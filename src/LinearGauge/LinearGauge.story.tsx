@@ -23,7 +23,7 @@ const Icon = ({ fill }) => (
   </svg>
 );
 
-storiesOf('Demos|Gauge/Linear', module)
+storiesOf('Charts|Gauge/Linear', module)
   .add('Single-Series', () => (
     <div style={{ textAlign: 'center' }}>
       <h2 style={{ color: 'white', margin: 0 }}>Risk Score</h2>

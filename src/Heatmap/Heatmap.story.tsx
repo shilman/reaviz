@@ -21,7 +21,7 @@ import {
   LinearYAxisTickLabel
 } from '../common/Axis';
 
-storiesOf('Demos|Heatmap/Simple', module)
+storiesOf('Charts|Heatmap/Simple', module)
   .add(
     'Basic',
     () => {
@@ -92,7 +92,7 @@ storiesOf('Demos|Heatmap/Simple', module)
     );
   });
 
-storiesOf('Demos|Heatmap/Calendar', module)
+storiesOf('Charts|Heatmap/Calendar', module)
   .add(
     'Year Calendar',
     () => {

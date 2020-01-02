@@ -13,7 +13,7 @@ import {
 } from '../common/Axis/RadialAxis';
 import { schemes } from '../common/color';
 
-storiesOf('Demos|Bar Chart/Radial', module)
+storiesOf('Charts|Bar Chart/Radial', module)
   .add(
     'Simple',
     () => {

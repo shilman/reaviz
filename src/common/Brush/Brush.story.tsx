@@ -26,7 +26,7 @@ import { Tooltip } from '../../common/Tooltip';
 import { GridlineSeries, Gridline, GridStripe } from '../Gridline';
 import { ChartZoomPan } from '../ZoomPan';
 
-storiesOf('Demos|Brush', module)
+storiesOf('Charts|Brush', module)
   .add('Line', () => (
     <LineChart
       width={450}

@@ -47,7 +47,7 @@ import { schemes } from '../common/color';
 import { getXScale, getYScale } from '../common/scales';
 import { HistogramBarChart } from './HistogramBarChart';
 
-storiesOf('Demos|Bar Chart/Vertical/Single Series', module)
+storiesOf('Charts|Bar Chart/Vertical/Single Series', module)
   .add(
     'Simple',
     () => {
@@ -253,7 +253,7 @@ storiesOf('Demos|Bar Chart/Vertical/Single Series', module)
     { options: { showPanel: true } }
   );
 
-storiesOf('Demos|Bar Chart/Vertical/Histogram', module)
+storiesOf('Charts|Bar Chart/Vertical/Histogram', module)
   .add(
     'Dates',
     () => {
@@ -316,7 +316,7 @@ storiesOf('Demos|Bar Chart/Vertical/Histogram', module)
     { options: { showPanel: true } }
   );
 
-storiesOf('Demos|Bar Chart/Vertical/Multi Series', module)
+storiesOf('Charts|Bar Chart/Vertical/Multi Series', module)
   .add(
     'Simple',
     () => {
@@ -668,7 +668,7 @@ storiesOf('Demos|Bar Chart/Vertical/Multi Series', module)
     { options: { showPanel: true } }
   );
 
-storiesOf('Demos|Bar Chart/Horizontal/Single Series', module)
+storiesOf('Charts|Bar Chart/Horizontal/Single Series', module)
   .add(
     'Simple',
     () => {
@@ -837,7 +837,7 @@ storiesOf('Demos|Bar Chart/Horizontal/Single Series', module)
     />
   ));
 
-storiesOf('Demos|Bar Chart/Horizontal/Multi Series', module)
+storiesOf('Charts|Bar Chart/Horizontal/Multi Series', module)
   .add('Simple', () => (
     <BarChart
       width={500}
@@ -983,7 +983,7 @@ storiesOf('Demos|Bar Chart/Horizontal/Multi Series', module)
     />
   ));
 
-storiesOf('Demos|Bar Chart/Gridlines', module)
+storiesOf('Charts|Bar Chart/Gridlines', module)
   .add('All Axes', () => (
     <BarChart
       width={350}
@@ -1009,7 +1009,7 @@ storiesOf('Demos|Bar Chart/Gridlines', module)
     />
   ));
 
-storiesOf('Demos|Bar Chart/Axis', module)
+storiesOf('Charts|Bar Chart/Axis', module)
   .add('Top + Bottom Axis', () => {
     const scale = getXScale({
       type: 'category',

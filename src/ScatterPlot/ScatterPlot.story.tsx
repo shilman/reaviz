@@ -26,7 +26,7 @@ import { symbolStar, symbol } from 'd3-shape';
 import { schemes } from '../common/color';
 import { getYScale, getXScale } from '../common/scales';
 
-storiesOf('Demos|Scatter Plot/Linear', module)
+storiesOf('Charts|Scatter Plot/Linear', module)
   .add(
     'Simple',
     () => {
@@ -155,7 +155,7 @@ storiesOf('Demos|Scatter Plot/Linear', module)
   ))
   .add('Live Update', () => <BubbleChartLiveUpdate />);
 
-storiesOf('Demos|Scatter Plot/Axis', module)
+storiesOf('Charts|Scatter Plot/Axis', module)
   .add('Top + Bottom Axis', () => {
     const scale = getXScale({
       type: 'category',

@@ -1,4 +1,4 @@
-import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import { DiscreteLegend, DiscreteLegendEntry, DiscreteLegendSymbol, SequentialLegend } from '../../src';
 
 <Meta title="Docs|Advanced/Legends" />
@@ -17,27 +17,12 @@ keep the library as modular as possible.
 
 ## Discrete Legend
 The discrete legend is useful for categorical charts such as bar charts.
-This legend supports supports both vertical and horizontal layout.
+This legend supports supports both vertical and horizontal layout. Below is a simple example of a
+discrete legend that has four different labels.
 
-Below is a simple example of a discrete legend that has four different
-labels.
-
-```js
-<DiscreteLegend
-  orientation="horizontal"
-  entries={[
-    <DiscreteLegendEntry label="DLP" color="green" />,
-    <DiscreteLegendEntry label="SIEM" color="blue" />,
-    <DiscreteLegendEntry label="AWS" color="yellow" />,
-    <DiscreteLegendEntry label="AD" color="purple" />
-  ]}
-/>
-```
-
-which would result in:
-
-<br />
-<Story id="charts-legend-discrete-horizontal--simple" />
+<Preview>
+  <Story id="charts-legend-discrete-horizontal--simple" />
+</Preview>
 
 ### API
 #### [DiscreteLegend](https://github.com/jask-oss/reaviz/blob/master/src/common/legends/DiscreteLegend/DiscreteLegend.tsx)
@@ -51,25 +36,12 @@ which would result in:
 
 ## Sequential Legend
 The sequential legend is useful for categorical charts such as heatmaps.
-This legend supports supports both vertical and horizontal layout.
+This legend supports supports both vertical and horizontal layout. Below is a simple
+example of a sequential legend:
 
-Below is a simple example of a sequential legend:
-
-```js
-<SequentialLegend
-  data={
-    [
-      { key: 'Foo', data: 200 },
-      { key: 'Bar', data: 0 }
-    ]
-  }
-/>
-```
-
-which would result in the following:
-
-<br />
-<Story id="charts-legend-sequential-horizontal--simple" />
+<Preview>
+  <Story id="charts-legend-sequential-horizontal--simple" />
+</Preview>
 
 ### API
 #### [SequentialLegend](https://github.com/jask-oss/reaviz/blob/master/src/common/legends/SequentialLegend/SequentialLegend.tsx)

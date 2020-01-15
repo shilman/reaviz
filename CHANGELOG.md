@@ -1,3 +1,6 @@
+# 7.2.3 - 1/15/20
+- [Fix] Hover returns color object #76
+
 # 7.2.2 - 12/2/19
 - [Fix] Lock `is-equal` dep due to errors
 

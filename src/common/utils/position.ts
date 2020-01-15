@@ -126,7 +126,10 @@ export const getLimitMatrix = (height: number, width: number, matrix) =>
  * Constrain the matrix.
  */
 export const constrainMatrix = (height: number, width: number, matrix) => {
-  const [min, max] = getLimitMatrix(height, width, matrix);
+  const [min, max] = getLimitMatrix(height, width, matrix) as {
+    x: number;
+    y: number;
+  }[];
 
   if (max.x < width || max.y < height) {
     return true;

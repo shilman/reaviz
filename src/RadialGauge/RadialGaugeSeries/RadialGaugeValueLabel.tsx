@@ -26,7 +26,13 @@ export class RadialGaugeValueLabel extends PureComponent<
 
     // TODO: Get seperator based on locale
     return (
-      <CountUp start={0} end={data.data} delay={0} duration={1} separator=",">
+      <CountUp
+        start={0}
+        end={data.data as number}
+        delay={0}
+        duration={1}
+        separator=","
+      >
         {({ countUpRef }) => (
           <text
             dy="-0.5em"

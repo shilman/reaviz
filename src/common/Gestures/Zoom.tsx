@@ -146,7 +146,7 @@ export class Zoom extends Component<ZoomGestureProps> {
 
     const point = getPointFromMatrix(event, matrix);
     if (point) {
-      const { x, y } = point;
+      const { x, y } = point as { x: number; y: number };
       const step = this.getStep(event.deltaY);
 
       this.scale(x, y, step, event);
@@ -182,7 +182,7 @@ export class Zoom extends Component<ZoomGestureProps> {
       const point = applyToPoint(inverse(this.props.matrix), {
         x: this.firstTouch.midpoint.x,
         y: this.firstTouch.midpoint.y
-      });
+      }) as { x: number; y: number };
 
       if (point.x && point.y) {
         const outside = this.scale(point.x, point.y, distanceFactor, event);

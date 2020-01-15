@@ -594,7 +594,7 @@ export class Bar extends Component<BarProps, BarState> {
     const stroke = color(data, barIndex);
     const coords = this.getCoords(data);
     const currentColorShade = active
-      ? chroma(stroke).brighten(activeBrightness)
+      ? chroma(stroke).brighten(activeBrightness).hex()
       : stroke;
     const rangeLineColor = (rangeLines && rangeLines.props.color) || stroke;
     const rangeLineColorShade = active

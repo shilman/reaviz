@@ -53,7 +53,7 @@ module.exports = async ({ config }) => ({
                     },
                     customTemplates: {
                       reaviz: {
-                        extends: 'qr0pk',
+                        extends: '6xjkm',
                         entry: 'src/App.js'
                       },
                       'reaviz-map': {

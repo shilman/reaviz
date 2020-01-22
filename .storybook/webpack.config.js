@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const autoprefixer = require('autoprefixer');
 const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
+const codesandbox = require('remark-codesandbox');
 
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
@@ -41,10 +42,32 @@ module.exports = async ({ config }) => ({
           {
             loader: '@mdx-js/loader',
             options: {
-              compilers: [createCompiler({})]
+              compilers: [createCompiler({})],
+              remarkPlugins: [
+                [
+                  codesandbox,
+                  {
+                    mode: 'iframe',
+                    query: {
+                      fontsize: 14
+                    },
+                    customTemplates: {
+                      reaviz: {
+                        extends: 'qr0pk',
+                        entry: 'src/App.js'
+                      },
+                      'reaviz-map': {
+                        extends: 'm1ker',
+                        entry: 'src/App.js'
+                      }
+                    },
+                    autoDeploy: true
+                  }
+                ]
+              ]
             }
           }
-        ],
+        ]
       },
       {
         test: /\.story\.(js|jsx|ts|tsx)$/,

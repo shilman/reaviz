@@ -1,5 +1,4 @@
 import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
-import { Sandbox } from '../tools';
 import { AreaChart, AreaSeries, Area, Line, PointSeries } from '../../src';
 
 <Meta title="Docs|Chart Types/Area Chart" />
@@ -62,8 +61,33 @@ const MyChart = () => (
 <Props of={PointSeries} />
 
 ## Demo
-<Sandbox
-  name="Area Chart Simple"
-  description="A simple area chart example"
-  path="docs/sandbox/AreaSimple.sandbox.js"
-/>
+
+```js codesandbox=reaviz
+import React from 'react';
+import { AreaChart } from 'reaviz';
+
+export const data = [
+  {
+    key: new Date('11/29/2019'),
+    data: 10
+  },
+  {
+    key: new Date('11/30/2019'),
+    data: 14
+  },
+  {
+    key: new Date('12/01/2019'),
+    data: 5
+  },
+  {
+    key: new Date('12/02/2019'),
+    data: 18
+  }
+];
+
+export default () => (
+  <div style={{ margin: '55px', textAlign: 'center' }}>
+    <AreaChart width={350} height={250} data={data} />
+  </div>
+);
+```

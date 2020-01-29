@@ -54,26 +54,26 @@ export function getXDomain({
   scaled = false,
   isDiverging = false
 }): number[] {
-  const [startX, endX] = extent(data, 'x');
-  const [startX0] = extent(data, 'x0');
+  const startX0 = extent(data, 'x0')[0];
+  const endX1 = extent(data, 'x1')[1];
 
   // Histograms use dates for start/end
-  if (typeof startX === 'number' && typeof endX === 'number') {
+  if (typeof startX0 === 'number' && typeof endX1 === 'number') {
     // If dealing w/ negative numbers, we should
     // normalize the top and bottom values
     if (startX0 < 0 || isDiverging) {
       const posStart = -startX0;
-      const maxNum = Math.max(posStart, endX);
+      const maxNum = Math.max(posStart, endX1);
 
       return [-maxNum, maxNum];
     }
 
     // If not scaled, return 0/max domains
     if (!scaled) {
-      return [0, endX];
+      return [0, endX1];
     }
   }
 
   // Scaled start scale at non-zero
-  return [startX, endX];
+  return [startX0, endX1];
 }

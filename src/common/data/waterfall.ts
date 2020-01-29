@@ -3,9 +3,10 @@ import { Direction, buildShallowChartData } from './builder';
 
 export const buildWaterfall = (
   series: ChartShallowDataShape[],
-  direction: Direction = 'vertical'
+  direction: Direction = 'vertical',
+  binSize: number | undefined = undefined
 ) => {
-  const data = buildShallowChartData(series, direction);
+  const data = buildShallowChartData(series, direction, binSize);
   const isVertical = direction === 'vertical';
   const v = isVertical ? 'y' : 'x';
 

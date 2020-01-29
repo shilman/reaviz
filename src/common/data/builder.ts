@@ -3,7 +3,8 @@ import {
   ChartInternalNestedDataShape,
   ChartShallowDataShape,
   ChartNestedDataShape,
-  ChartInternalShallowDataShape
+  ChartInternalShallowDataShape,
+  ChartDataTypes
 } from './types';
 import {
   getMaxBigIntegerForNested,
@@ -11,6 +12,7 @@ import {
   normalizeValue,
   normalizeValueForFormatting
 } from './bigInteger';
+import bigInt from 'big-integer';
 
 export type Direction = 'vertical' | 'horizontal';
 
@@ -102,12 +104,28 @@ export function buildNestedChartData(
   return result;
 }
 
+function addToChartType(
+  a: ChartDataTypes,
+  b: number | bigInt.BigInteger
+): ChartDataTypes {
+  if (bigInt.isInstance(a) && bigInt.isInstance(b)) {
+    return (a as bigInt.BigInteger).add(b as bigInt.BigInteger);
+  } else if (a instanceof Date && typeof b === 'number') {
+    return new Date(a.valueOf() + b);
+  } else if (typeof a === 'number' && typeof b === 'number') {
+    return a + b;
+  } else {
+    throw new Error('Invalid types to addToChartTypes');
+  }
+}
+
 /**
  * Accepts a shallow shape and normalizes it to a chart readable format.
  */
 export function buildShallowChartData(
   series: ChartShallowDataShape[],
-  direction: Direction = 'vertical'
+  direction: Direction = 'vertical',
+  binSize: number | undefined = undefined
 ): ChartInternalShallowDataShape[] {
   const result: ChartInternalShallowDataShape[] = [];
   const maxBigInteger = getMaxBigIntegerForShallow(series);
@@ -115,10 +133,14 @@ export function buildShallowChartData(
 
   for (const point of series) {
     const isTuple = Array.isArray(point.data);
+    let k1 = point.key;
+    if (binSize) {
+      k1 = addToChartType(point.key, binSize);
+    }
 
     const props = {
-      k0: normalizeValue(isVertical ? 0 : point.key, maxBigInteger),
-      k1: normalizeValue(point.key, maxBigInteger),
+      k0: normalizeValue(point.key, maxBigInteger),
+      k1: normalizeValue(k1, maxBigInteger),
       v0: normalizeValue(isTuple ? point.data[0] : 0, maxBigInteger),
       v1: normalizeValue(isTuple ? point.data[1] : point.data, maxBigInteger)
     };
@@ -127,7 +149,7 @@ export function buildShallowChartData(
     const yProp = isVertical ? 'v' : 'k';
 
     result.push({
-      key: normalizeValueForFormatting(props.k1),
+      key: normalizeValueForFormatting(props.k0),
       value: normalizeValueForFormatting(props.v1),
       metadata: point.metadata,
       id: point.id,

@@ -8,8 +8,6 @@ import {
 } from '../../common/data';
 import { getColor, ColorSchemeType } from '../../common/color';
 import { CloneElement } from '../../common/utils/children';
-import { ThresholdCountGenerator, ThresholdArrayGenerator } from 'd3-array';
-import { CountableTimeInterval } from 'd3-time';
 import {
   TooltipAreaProps,
   TooltipArea,
@@ -86,14 +84,9 @@ export interface BarSeriesProps {
   layout: Direction;
 
   /**
-   * Threshold for the binning of histogram charts.
+   * The size of each bin/bucket in the bar chart.
    */
-  binThreshold?:
-    | number
-    | ThresholdCountGenerator
-    | ArrayLike<number | Date>
-    | ThresholdArrayGenerator
-    | CountableTimeInterval;
+  binSize?: number;
 
   /**
    * Height of the chart. Set internally by `BarChart`.

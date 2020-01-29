@@ -19,7 +19,7 @@ import {
   binnedDateNegativeOnly
 } from '../../demo';
 import chroma from 'chroma-js';
-import { timeWeek, timeMonth } from 'd3-time';
+import { timeWeek } from 'd3-time';
 import { range } from 'd3-array';
 import {
   BarSeries,
@@ -29,8 +29,8 @@ import {
   MarimekkoBarSeries,
   RangeLines,
   BarLabel,
-  HistogramBarSeries,
-  GuideBar
+  GuideBar,
+  HistogramBarSeries
 } from './BarSeries';
 import { GridlineSeries, Gridline } from '../common/Gridline';
 import {
@@ -266,10 +266,10 @@ storiesOf('Charts|Bar Chart/Vertical/Histogram', module)
           xAxis={
             <LinearXAxis
               type="time"
-              roundDomains={true}
               tickSeries={<LinearXAxisTickSeries interval={timeWeek} />}
             />
           }
+          series={<HistogramBarSeries binSize={60 * 60 * 24 * 1000} />}
           data={data}
         />
       );
@@ -286,30 +286,8 @@ storiesOf('Charts|Bar Chart/Vertical/Histogram', module)
           width={350}
           height={250}
           xAxis={<LinearXAxis type="value" />}
+          series={<HistogramBarSeries binSize={1} />}
           data={data}
-        />
-      );
-    },
-    { options: { showPanel: true } }
-  )
-  .add(
-    'Custom Bin Thresholds',
-    () => {
-      const data = object('Data', medDateData);
-
-      return (
-        <HistogramBarChart
-          width={350}
-          height={250}
-          data={data}
-          xAxis={
-            <LinearXAxis
-              type="time"
-              roundDomains={true}
-              tickSeries={<LinearXAxisTickSeries interval={timeMonth} />}
-            />
-          }
-          series={<HistogramBarSeries binThreshold={timeWeek} />}
         />
       );
     },

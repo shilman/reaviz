@@ -12,7 +12,6 @@ import { BarSeries, BarSeriesProps } from './BarSeries';
 import {
   ChartDataShape,
   ChartNestedDataShape,
-  buildBins,
   buildBarStackData,
   buildMarimekkoData,
   buildWaterfall,
@@ -120,7 +119,11 @@ export class BarChart extends Component<BarChartProps> {
         layout
       );
     } else if (type === 'waterfall') {
-      data = buildWaterfall(this.props.data as ChartShallowDataShape[], layout);
+      data = buildWaterfall(
+        this.props.data as ChartShallowDataShape[],
+        layout,
+        this.props.series.props.binSize
+      );
     } else if (isMarimekko) {
       data = buildMarimekkoData(this.props.data as ChartNestedDataShape[]);
     } else if (isGrouped) {
@@ -132,7 +135,8 @@ export class BarChart extends Component<BarChartProps> {
     } else {
       data = buildShallowChartData(
         this.props.data as ChartShallowDataShape[],
-        layout
+        layout,
+        this.props.series.props.binSize
       );
     }
 
@@ -182,8 +186,7 @@ export class BarChart extends Component<BarChartProps> {
       }
     }
 
-    // If the key axis is a time/number we should bin it...
-    data = this.getBinnedData(data, xScale, yScale);
+    // data = this.getBinnedData(data, xScale, yScale);
 
     return { xScale, xScale1, yScale, data };
   }
@@ -200,25 +203,6 @@ export class BarChart extends Component<BarChartProps> {
 
   getIsVertical() {
     return this.props.series.props.layout === 'vertical';
-  }
-
-  getBinnedData(data, xScale, yScale) {
-    const { series } = this.props;
-
-    const keyAxis = this.getKeyAxis();
-    const isVertical = this.getIsVertical();
-    const keyScale = isVertical ? xScale : yScale;
-    const keyAxisType = keyAxis.props.type;
-
-    if (
-      keyAxisType === 'time' ||
-      keyAxisType === 'value' ||
-      keyAxisType === 'duration'
-    ) {
-      data = buildBins(keyScale, series.props.binThreshold, data);
-    }
-
-    return data;
   }
 
   getMarimekkoGroupScales(data, axis, width: number) {

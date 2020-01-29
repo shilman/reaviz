@@ -257,6 +257,7 @@ storiesOf('Charts|Bar Chart/Vertical/Histogram', module)
   .add(
     'Dates',
     () => {
+      const binSize = number('Bin Size', 60 * 60 * 24 * 1000);
       const data = object('Data', medDateData);
 
       return (
@@ -269,7 +270,7 @@ storiesOf('Charts|Bar Chart/Vertical/Histogram', module)
               tickSeries={<LinearXAxisTickSeries interval={timeWeek} />}
             />
           }
-          series={<HistogramBarSeries binSize={60 * 60 * 24 * 1000} />}
+          series={<HistogramBarSeries binSize={binSize} />}
           data={data}
         />
       );
@@ -279,6 +280,7 @@ storiesOf('Charts|Bar Chart/Vertical/Histogram', module)
   .add(
     'Numbers',
     () => {
+      const binSize = number('Bin Size', 1);
       const data = object('Data', numberData);
 
       return (
@@ -286,7 +288,7 @@ storiesOf('Charts|Bar Chart/Vertical/Histogram', module)
           width={350}
           height={250}
           xAxis={<LinearXAxis type="value" />}
-          series={<HistogramBarSeries binSize={1} />}
+          series={<HistogramBarSeries binSize={binSize} />}
           data={data}
         />
       );

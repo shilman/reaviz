@@ -1,3 +1,6 @@
+# 8.0.0 - 1/29/20
+- [Breaking] Remove auto-binning from bar charts #118
+
 # 7.2.3 - 1/15/20
 - [Fix] Hover returns color object #76
 

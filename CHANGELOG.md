@@ -1,3 +1,6 @@
+# 8.0.1 - 2/6/20
+- [Chore] Upgrade deps
+
 # 8.0.0 - 1/29/20
 - [Breaking] Remove auto-binning from bar charts #118
 

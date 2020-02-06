@@ -6,6 +6,8 @@ const codesandbox = require('remark-codesandbox');
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+const reavizCodesandboxTemplatePackageJSON = require('../docs/tools/templates/reaviz-codesandbox-template/package.json');
+
 module.exports = async ({ config }) => ({
   ...config,
   module: {
@@ -53,12 +55,26 @@ module.exports = async ({ config }) => ({
                     },
                     customTemplates: {
                       reaviz: {
-                        extends: '6xjkm',
+                        extends: `file:${resolve(
+                          __dirname,
+                          '../docs/tools/templates/reaviz-codesandbox-template'
+                        )}`,
                         entry: 'src/App.js'
                       },
                       'reaviz-map': {
-                        extends: 'm1ker',
-                        entry: 'src/App.js'
+                        extends: 'reaviz',
+                        files: {
+                          'package.json': {
+                            content: {
+                              ...reavizCodesandboxTemplatePackageJSON,
+                              dependencies: {
+                                ...reavizCodesandboxTemplatePackageJSON.dependencies,
+                                'topojson-client': 'latest',
+                                'world-atlas': 'latest'
+                              }
+                            }
+                          }
+                        }
                       }
                     },
                     autoDeploy: true
